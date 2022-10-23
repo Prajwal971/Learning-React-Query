@@ -83,5 +83,5 @@ Updating data using mutations(To create/update/delete data):-send a request to t
          
          inside the functionComponent
          
-         <button onClick={**refresh**}>Fetch on click of a button</button>
+         <button onClick={**reFetch**}>Fetch on click of a button</button>
          
