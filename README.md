@@ -85,3 +85,23 @@ Updating data using mutations(To create/update/delete data):-send a request to t
          
          <button onClick={**reFetch**}>Fetch on click of a button</button>
          
+### Success and Error Callbacks
+#### typically used when on an successful fetch an action needs to be completed like navigating to another page or side effect or such.
+        
+        const onSuccess = () => {
+          console.log("Do anything after data fetching")
+        }
+        const onError = () => {
+          console.log("Do anything after encountering Error")
+        }
+        const { isLoading, data, isError, error, isFetching, **reFetch** } = useQuery(
+          'url_name or anyIndetifier',
+          fetchUrl,
+          {
+            onSuccess:onSuccess,
+            onError:onError
+            //As per ES6 if the key and value are same u can also write it as 
+            onSuccess,
+            onError
+          }
+         )
