@@ -37,15 +37,16 @@ const fetchUrl = () => {
  ### The Below function avoids using saparate state variables 
  ### And thus gives Errors, data all at once.
  inside function 
- const { isLoading, data, isError, error, isFetching } = useQuery(
-  'url_name',
-  fetchUrl
-  )
-  
- if(isLoading){
-  return <h2>Loading</h2>
- }
  
- if(isError){
-  return <h2>Loading</h2>
- }
+     const { isLoading, data, isError, error, isFetching } = useQuery(
+      'url_name',
+      fetchUrl
+      )
+  
+     if(isLoading){
+      return <h2>Loading</h2>
+     }
+
+     if(isError){
+      return <h2>Loading</h2>
+     }
