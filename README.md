@@ -20,7 +20,7 @@ Updating data using mutations(To create/update/delete data):-send a request to t
 ### The traditional method executes the URL each and every time renders
 ### But React-Query executes only and only 
   ### 1) The backend data has changed.
-  ### 2) The Cache timer has exceed. **5minutes**
+  ### 2) The Cache timer has exceed. **5minutes** Will always be in sync with backend or remote data
         const { isLoading, data, isError, error, isFetching } = useQuery(
           'url_name',
           fetchUrl,
@@ -50,3 +50,24 @@ Updating data using mutations(To create/update/delete data):-send a request to t
      if(isError){
       return <h2>Loading</h2>
      }
+
+### refetchinterval OR **Polling**
+#### If we want to keep fetching after certain time frame Its better to use reFetchInterval and works only when the window is on focus else if not on focus it doesnt work.
+#### only use it when data keeps changing every that time period.
+        const { isLoading, data, isError, error, isFetching } = useQuery(
+          'url_name',
+          fetchUrl,
+          {
+            refetchInterval:2000 //2 second
+          }
+         )
+         
+#### only use it when data keeps changing every that time period in the Background.
+        const { isLoading, data, isError, error, isFetching } = useQuery(
+          'url_name',
+          fetchUrl,
+          {
+            refetchIntervalInBackground:true //2 second
+          }
+         )
+
