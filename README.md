@@ -67,6 +67,7 @@ Updating data using mutations(To create/update/delete data):-send a request to t
           'url_name',
           fetchUrl,
           {
+            refetchInterval:2000,
             refetchIntervalInBackground:true //2 second
           }
          )
