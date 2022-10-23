@@ -30,9 +30,9 @@ Updating data using mutations(To create/update/delete data):-send a request to t
          )
 
 ### Basic of how to use Fetch from API/URL using React Query
-const fetchUrl = () => {
-  return axios.get('URL')
- }
+      const fetchUrl = () => {
+        return axios.get('URL')
+       }
  
  ### The Below function avoids using saparate state variables 
  ### And thus gives Errors, data all at once.
