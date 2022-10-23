@@ -72,3 +72,16 @@ Updating data using mutations(To create/update/delete data):-send a request to t
           }
          )
 
+### useQuery on click of a button.
+        const { isLoading, data, isError, error, isFetching, **reFetch** } = useQuery(
+          'url_name',
+          fetchUrl,
+          {
+            enabled:false
+          }
+         )
+         
+         inside the functionComponent
+         
+         <button onClick={**refresh**}>Fetch on click of a button</button>
+         
