@@ -39,7 +39,7 @@ Updating data using mutations(To create/update/delete data):-send a request to t
  inside function 
  
      const { isLoading, data, isError, error, isFetching } = useQuery(
-      'url_name',
+      'url_name', //Its a unique Key
       fetchUrl
       )
   
@@ -124,3 +124,21 @@ Updating data using mutations(To create/update/delete data):-send a request to t
           {data.map((varName) => {
             return <div key={varName}>{varName}</div>
          </h2>
+
+
+### Parallel Queries
+#### When we have a lot of URL and need to execute them together to increase the concurrency we use Parallel queries i.e. back to back useQuery
+
+            const fetchURL1 = () => {
+              return axios.get('URL ENDPOINT')
+            }
+            const fetchURL2 = () => {
+              return axios.get('URL ENDPOINT')
+            }
+            
+            export const ParallelQueriesPage = () => {
+              const {data : ABC} = useQuery('identifier', fetchURL1)
+              const {data : ABCD} = useQuery('identifier', fetchURL2)
+            }
+            
+            
