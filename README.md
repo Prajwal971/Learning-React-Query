@@ -105,3 +105,22 @@ Updating data using mutations(To create/update/delete data):-send a request to t
             onError
           }
          )
+         
+### Data Transformation
+#### Sometimes when we need certain data and not all the data from the API We can filter,sort or perform any action then and there itself by specifing in the useQuery Hook the SELECT keyword
+        const { isLoading, data, isError, error, isFetching, **reFetch** } = useQuery(
+          'url_name or anyIndetifier',
+          fetchUrl,
+          {
+            select:(data) => {  //data here is the response
+              const anyVar = data.//response data OBJ.map(hero => hero.name)
+              return anyVar
+            }
+          }
+         )
+
+         inside the main return function
+         <h2>
+          {data.map((varName) => {
+            return <div key={varName}>{varName}</div>
+         </h2>
