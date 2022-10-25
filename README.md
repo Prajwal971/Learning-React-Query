@@ -164,3 +164,40 @@ Updating data using mutations(To create/update/delete data):-send a request to t
               console.log({ queryResults })
               return <div>Dynamic Parallel Queries</div>
             }
+
+
+### Dependent Queries
+#### when We need to execute queries sequentially i.e. one after another.
+#### i.e. the result of 1st query depends as input to 2nd query
+
+              import { useQuery } from 'react-query'
+              import axios from 'axios'
+
+              const fetchUserByEmail = email => {
+                return axios.get(`http://localhost:4000/users/${email}`)
+              }
+
+              const fetchCoursesByChannelId = channelId => {
+                return axios.get(`http://localhost:4000/channels/${channelId}`)
+              }
+
+              export const DependentQueriesPage = ({ email }) => {
+                const { data: user } = useQuery(['user', email], () =>
+                  fetchUserByEmail(email)
+                )
+                const channelId = user?.data?.channelId
+                const { data: courses } = useQuery(['courses', channelId], () => fetchCoursesByChannelId(channelId), {
+                  enabled: !!channelId // !!here will convert to a boolean value if no channelID false else true
+                })
+
+                const coursesList = courses?.data.courses
+                return (
+                  <div>
+                    DependentQueries
+                    {channelId && <h3>{channelId}</h3>}
+                    {coursesList?.map(course => {
+                      return <h3>{course}</h3>
+                    })}
+                  </div>
+                )
+              }
