@@ -251,3 +251,18 @@ Updating data using mutations(To create/update/delete data):-send a request to t
                     keepPreviousData: true  //This enables to display the previous data to be displayed until the next data arrives.
                   }
                 )
+
+### Infinite Queries
+#### When we scrolldown and if there are more information to display rather than showing all at once and affecting the performance...it can be implemented by giving a loadmore button or as the scroll axis goes down loading more.
+### By using useInfiniteQuery
+
+
+
+### Mutation
+#### Mutation is used when we need to send or POST to the API endPoint. using the mutate hook. It can also return error, fetch
+
+### Query Invalidation
+#### When we update or POST the data to the backend...the updated value needs to shown directly/automatically instead of calling the GET function onclick of a button.
+#### For this we use SUCCESS callback and passing the getURL KEY {HERE its 'super-heros'}  on the SUCCESS callback.
+#### Using the queryClient and queryClient.invalidateQueries('super-heroes') onSuccess.
+
