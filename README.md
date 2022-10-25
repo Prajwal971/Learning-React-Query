@@ -201,3 +201,32 @@ Updating data using mutations(To create/update/delete data):-send a request to t
                   </div>
                 )
               }
+
+
+### Initial Query Data
+#### Using the data from the previous fetch to the current data holder.
+#### The Above can be achived with useQueryClient. 
+              import { useQuery, useQueryClient } from 'react-query'
+              import axios from 'axios'
+
+              const fetchSuperHero = ({ queryKey }) => {
+                const heroId = queryKey[1]
+                return axios.get(`http://localhost:4000/superheroes/${heroId}`)
+              }
+
+              export const useSuperHeroData = heroId => {
+                const queryClient = useQueryClient()
+                return useQuery(['super-hero', heroId], fetchSuperHero, {
+                  initialData: () => {
+                    const var = queryClient
+                      .getQueryData('unique identifier')
+                      ?.data?.//DO something
+                    if (var) {
+                      return { data: *** }
+                    } else {
+                      return undefined
+                    }
+                  }
+                })
+              }
+
