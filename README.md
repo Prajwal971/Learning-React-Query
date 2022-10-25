@@ -230,3 +230,24 @@ Updating data using mutations(To create/update/delete data):-send a request to t
                 })
               }
 
+
+### Pagination 
+#### When the backend API supports paginatedURL's we can implement this using ReactQuery in an react application using the useState() state variable and setting the pageLimit and pageNUmber dynamically. ALso the previous page data can be stored until the new page data arrives.
+
+              import { useState } from 'react'
+              import { useQuery } from 'react-query'
+              import axios from 'axios'
+
+              const fetchColors = pageNumber => {
+                return axios.get(`URLENDPOINT?_limit=2&_page=${pageNumber}`)
+              }
+
+              export const PaginatedQueriesPage = () => {
+                const [pageNumber, setPageNumber] = useState(1)
+                const { isLoading, isError, error, data, isFetching } = useQuery(
+                  ['UNIQUE_KEY', pageNumber],
+                  () => fetchColors(pageNumber),
+                  {
+                    keepPreviousData: true  //This enables to display the previous data to be displayed until the next data arrives.
+                  }
+                )
