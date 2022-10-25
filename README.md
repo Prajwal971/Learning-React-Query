@@ -142,7 +142,7 @@ Updating data using mutations(To create/update/delete data):-send a request to t
             }
             
  ### Dynamic Parallel Queries
- #### if we need a details of 1 single user or multiple user may be 1 or 3...Parallel queries may not be effecient that time its better to use DynamicParallelQueries.
+ #### if we need a details of 1 single user or multiple user may be 1 or 3...Parallel queries may not be effecient that time its better to use DynamicParallelQueries by using useQueries.
  
             import { useQueries } from 'react-query'
             import axios from 'axios'
