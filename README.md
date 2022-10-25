@@ -141,4 +141,26 @@ Updating data using mutations(To create/update/delete data):-send a request to t
               const {data : ABCD} = useQuery('identifier', fetchURL2)
             }
             
-            
+ ### Dynamic Parallel Queries
+ #### if we need a details of 1 single user or multiple user may be 1 or 3...Parallel queries may not be effecient that time its better to use DynamicParallelQueries.
+ 
+            import { useQueries } from 'react-query'
+            import axios from 'axios'
+
+            const fetchSuperHero = heroId => {
+              return axios.get(`http://localhost:4000/superheroes/${heroId}`)
+            }
+
+            export const DynamicParallelPage = ({ heroIds }) => {
+              const queryResults = useQueries(
+                heroIds.map(id => {
+                  return {
+                    queryKey: ['super-hero', id],
+                    queryFn: () => fetchSuperHero(id)
+                  }
+                })
+              )
+
+              console.log({ queryResults })
+              return <div>Dynamic Parallel Queries</div>
+            }
